@@ -249,6 +249,10 @@
                 }, "preview": {
                     "theme": {
                         "path": "{{ cdn_prev }}vditor@3.10.4/dist/css/content-theme"
+                    },
+                    "math": {
+                        "inlineDigit": true,
+                        "engine": 'MathJax',
                     }
                 },
                 toolbar: [
@@ -371,6 +375,10 @@
                     "mode": "both",
                     "theme": {
                         "path": "{{ cdn_prev }}vditor@3.10.4/dist/css/content-theme"
+                    },
+                    "math": {
+                        "inlineDigit": true,
+                        "engine": 'MathJax',
                     }
                 }, hint: {
                     emoji: {{ emoji|safe }}
