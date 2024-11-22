@@ -222,6 +222,24 @@ def set_abbrlink(request):
         context = {"msg": repr(e), "status": False}
     return JsonResponse(safe=False, data=context)
 
+# 设置 Abbrlink 配置 api/set_mathengine
+@login_required(login_url="/login/")
+def set_mathengine(request):
+    if not request.user.is_staff:
+        logging.info(gettext("USER_IS_NOT_STAFF").format(request.user.username, request.path))
+        return JsonResponse(safe=False, data={"msg": gettext("NO_PERMISSION"), "status": False})
+    try:
+        math_engine = request.POST.get("math_engine")
+        math_inlinedigit = request.POST.get("math_inlinedigit")
+        save_setting("MATHENGINE", math_engine)
+        save_setting("ALLOW_INLINEDIGIT", math_inlinedigit)
+        context = {"msg": gettext("SAVE_SUCCESS"), "status": True}
+    except Exception as e:
+        logging.error(repr(e))
+        context = {"msg": repr(e), "status": False}
+    return JsonResponse(safe=False, data=context)
+
+
 
 # 设置CDN api/set_cdn
 @login_required(login_url="/login/")

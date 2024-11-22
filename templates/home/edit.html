@@ -260,6 +260,10 @@
                 "preview": {
                     "theme": {
                         "path": "{{ cdn_prev }}vditor@3.10.4/dist/css/content-theme"
+                    },
+                    "math": {
+                        "inlineDigit": {% if allow_inlinedigit %}true{% else %}false{% endif %},
+                        "engine": "{{ math_engine }}"
                     }
                 },
                 toolbar: [
@@ -355,6 +359,10 @@
                     "mode": "both",
                     "theme": {
                         "path": "{{ cdn_prev }}vditor@3.10.4/dist/css/content-theme"
+                    },
+                    "math": {
+                        "inlineDigit": {% if allow_inlinedigit %}true{% else %}false{% endif %},
+                        "engine": "{{ math_engine }}"
                     }
                 },
                 hint: {
