@@ -700,6 +700,8 @@ def pages(request):
                 logging.info(gettext("USER_IS_NOT_STAFF").format(request.user.username, request.path))
                 return page_403(request, gettext("NO_PERMISSION"))
             try:
+                context['math_engine'] = get_setting("MATHENGINE")
+                context['allow_inlinedigit'] = get_setting("ALLOW_INLINEDIGIT")
                 context['ABBRLINK_ALG'] = get_setting("ABBRLINK_ALG")
                 context['ABBRLINK_REP'] = get_setting("ABBRLINK_REP")
                 context["ALLOW_FRIEND"] = get_setting("ALLOW_FRIEND")
