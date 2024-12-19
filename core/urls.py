@@ -38,6 +38,7 @@ urlpatterns = [
     path('api/set_image_host/', set_image_host, name='set_image_host'),
     path('api/set_api/', set_api, name='set_api'),
     path('api/set_abbrlink/', set_abbrlink, name='set_abbrlink'),
+    path('api/set_mathengine/', set_mathengine, name='set_mathengine'),
     path('api/set_cust/', set_cust, name='set_cust'),
     path('api/set_statistic/', set_statistic, name='set_statistic'),
     path('api/set_security/', set_security, name='set_security'),

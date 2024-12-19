@@ -199,8 +199,8 @@
                         "path": "{{ cdn_prev }}vditor@3.10.4/dist/css/content-theme"
                     },
                     "math": {
-                        "inlineDigit": true,
-                        "engine": 'MathJax',
+                        "inlineDigit": {% if allow_inlinedigit %}true{% else %}false{% endif %},
+                        "engine": "{{ math_engine }}"
                     }
                 },
                 toolbar: [
@@ -325,8 +325,8 @@
                         "path": "{{ cdn_prev }}vditor@3.10.4/dist/css/content-theme"
                     },
                     "math": {
-                        "inlineDigit": true,
-                        "engine": 'MathJax',
+                        "inlineDigit": {% if allow_inlinedigit %}true{% else %}false{% endif %},
+                        "engine": "{{ math_engine }}"
                     }
                 }, hint: {
                     emoji: {{ emoji|safe }}
