@@ -480,6 +480,8 @@ def pages(request):
                 context["img_bed"] = True
         elif "edit_page" in load_template:
             context["breadcrumb"] = "PageEditor"
+            context['math_engine'] = get_setting("MATHENGINE")
+            context['allow_inlinedigit'] = get_setting("ALLOW_INLINEDIGIT")
             file_path = request.GET.get("file")
             context["front_matter"], context["file_content"] = get_post_details(
                 (Provider().get_content(file_path)))
@@ -501,6 +503,8 @@ def pages(request):
             context["breadcrumb_cn"] = gettext("EDIT_CONFIG") + ": " + context['filename']
         elif "edit" in load_template:
             context["breadcrumb"] = "PostEditor"
+            context['math_engine'] = get_setting("MATHENGINE")
+            context['allow_inlinedigit'] = get_setting("ALLOW_INLINEDIGIT")
             file_path = request.GET.get("file")
             context["front_matter"], context["file_content"] = get_post_details(
                 (Provider().get_content(file_path)))
@@ -519,6 +523,8 @@ def pages(request):
             context["breadcrumb_cn"] = gettext("NEW_PAGE")
             context["emoji"] = get_setting("VDITOR_EMOJI")
             context["sidebar"] = get_setting("PAGE_SIDEBAR")
+            context['math_engine'] = get_setting("MATHENGINE")
+            context['allow_inlinedigit'] = get_setting("ALLOW_INLINEDIGIT")
             try:
                 context["front_matter"], context["file_content"] = get_post_details(
                     (Provider().get_scaffold("pages")))
@@ -535,6 +541,8 @@ def pages(request):
             context["breadcrumb_cn"] = gettext("NEW_POST")
             context["emoji"] = get_setting("VDITOR_EMOJI")
             context["sidebar"] = get_setting("POST_SIDEBAR")
+            context['math_engine'] = get_setting("MATHENGINE")
+            context['allow_inlinedigit'] = get_setting("ALLOW_INLINEDIGIT")
             context["config"] = Provider().config
             try:
                 context["front_matter"], context["file_content"] = get_post_details(

@@ -372,6 +372,51 @@
                                 </div>
                             </div>
                         </form>
+                        <form id="mathengine-settings" onsubmit="return false;">
+                            <hr class="my-4"/>
+                            <h6 class="heading-small text-muted mb-4">
+                                {{ "SET_MATHENGINE" | gettext }}</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    {% csrf_token %}
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label">
+                                                {{ "SET_MATHENGINE_1" | gettext }}</label>
+                                            <select name="math_engine" class="form-control">
+                                                <option{% if math_engine == "KaTeX" %}
+                                                    selected{% endif %}>KaTeX
+                                                </option>
+                                                <option{% if math_engine == "MathJax" %}
+                                                    selected{% endif %}>MathJax
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label">
+                                                {{ "SET_MATHENGINE_2" | gettext }}</label>
+                                            <select name="math_inlinedigit" class="form-control">
+                                                <option{% if allow_inlinedigit == "是" %}
+                                                    selected{% endif %}>是
+                                                </option>
+                                                <option{% if allow_inlinedigit == "否" %}
+                                                    selected{% endif %}>否
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <input type="button" class="btn btn-primary"
+                                               value="{{ "SUBMIT" | gettext }}"
+                                               onclick="submit_mathengine_config()">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <form id="excerpt-settings" onsubmit="return false;">
                             <hr class="my-4"/>
                             <h6 class="heading-small text-muted mb-4">
@@ -1130,6 +1175,29 @@
                 url: '/api/set_abbrlink/',
                 method: 'post',
                 data: $('#abbrlink-settings').serialize(),
+                dataType: "json",
+                success: function (res) {
+                    loading.destroy();
+                    if (res.status) {
+                        notyf.success(res.msg);
+                    } else {
+                        notyf.error(res.msg);
+                    }
+                },
+                error: function (res) {
+                    loading.destroy();
+                    notyf.error("{{ "NETWORK_ERROR" | gettext }}");
+                }
+            })
+        }
+
+        function submit_mathengine_config() {
+            let loading = new KZ_Loading('{{ "SAVING" | gettext }}');
+            loading.show();
+            $.ajax({
+                url: '/api/set_mathengine/',
+                method: 'post',
+                data: $('#mathengine-settings').serialize(),
                 dataType: "json",
                 success: function (res) {
                     loading.destroy();
