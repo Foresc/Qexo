@@ -52,6 +52,8 @@ DEFAULT_UPDATES = [
 ALL_SETTINGS = [  # [名称, 默认值, 是否在尝试修复时重置, 简介]
     ["ABBRLINK_ALG", "crc16", False, "短链接算法"],
     ["ABBRLINK_REP", "dec", False, "短链接格式dec/hex"],
+    ["MATHENGINE", "KaTeX", False, "数学公式渲染引擎"],
+    ["ALLOW_INLINEDIGIT", "否", False, "内联数学公式起始 $ 后是否允许数字"],
     ["CDN_PREV", "https://cdn.jsdelivr.net/npm/", True, "调用NPM的CDN前缀"],
     # ["CDNJS", "https://cdn.staticfile.org/", True, "调用CDNJS的CDN前缀"],
     ["INIT", "2", False, "初始化标识"],
